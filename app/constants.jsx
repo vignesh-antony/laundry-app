@@ -24,5 +24,7 @@ export const COLORS = {
     },
     tertiary: {
         100: "#eeeeee",
+        300: "#aaaaaa",
+        500: "#5a5a5a",
     },
 };

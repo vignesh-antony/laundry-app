@@ -9,6 +9,8 @@ const TypographyStyles = (props) => {
         weight = "400",
         size = 14,
         lineHeight = 21,
+        textCase = "none",
+        color = "#000000",
     } = props || {};
 
     const getFontStyles = (variant) => {
@@ -73,14 +75,18 @@ const TypographyStyles = (props) => {
             default: {
                 return {
                     fontFamily: DEFAULT_FONTS.REGULAR,
-                    fontSize: 14,
+                    fontSize: size,
                 };
             }
         }
     };
     const fontStyles = getFontStyles(variant) || {};
     return StyleSheet.create({
-        text: fontStyles,
+        text: {
+            ...fontStyles,
+            textTransform: textCase,
+            color,
+        },
     });
 };
 
@@ -89,13 +95,32 @@ const Typography = ({
     weight = 400,
     size = 14,
     lineHeight = 21,
+    textCase = "none",
+    color = "#000000",
+    numberOfLines = 0,
     children = null,
 }) => {
     const styles = useMemo(
-        () => TypographyStyles({ variant, weight, size, lineHeight }),
+        () =>
+            TypographyStyles({
+                variant,
+                weight,
+                size,
+                lineHeight,
+                textCase,
+                color,
+            }),
         [variant],
     );
-    return <Text style={styles.text}>{children || ""}</Text>;
+    return (
+        <Text
+            style={styles.text}
+            numberOfLines={numberOfLines}
+            ellipsizeMode="tail"
+        >
+            {children || ""}
+        </Text>
+    );
 };
 
 export default Typography;
