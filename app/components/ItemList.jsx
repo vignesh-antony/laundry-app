@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
+import AmountBar from "./AmountBar";
 import Item from "./Item";
 import { COLORS } from "../constants";
 import Typography from "../core/Typography";
@@ -33,6 +34,7 @@ const ItemList = () => {
             <Item />
             <Item />
             <Item />
+            <AmountBar />
         </View>
     );
 };
